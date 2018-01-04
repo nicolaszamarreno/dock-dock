@@ -1,0 +1,11 @@
+{
+  "name": "Docker-Socket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/nicolaszamarreno/docker-servernode.git",
+  "author": "nicolaszamarreno <zamarreno.nicolas@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "^2.0.4"
+  }
+}
