@@ -13,16 +13,23 @@ _Just for create and deploy quickly my project and experience on NodeJS & Nginx 
 
 ---
 
+## Summary
+
+* [Install Image thanks to Dockerfile](#install-image-thanks-to-dockerfile)
+* [Launch the container](#launch-the-container)
+* [Prerequisites & utils](#prerequisites--utils)
+* [Tips](#tips)
+
 ## Install Image thanks to `Dockerfile`
 
 After we have clone the repository, you should go to the folder. If you want change configuration of your server or your VPS, you can into the file `default` before construct your image.  
 After that, you will execute the commands below:
 
 ```bash
-#Launch command for install all the packages
+# Launch command for install all the packages
 $ docker build -t <NAME_IMAGE> <PATH_DOCKERFILE>
 
-#Example
+# Example
 $ docker build -t env/node .
 ```
 
@@ -42,14 +49,14 @@ _Well, your picture is ready. Now we can get down to business and launch our con
 Basically, it's very easy to launch container with Docker, only some lines and your environment is mounted. The evidence:
 
 ```bash
-#Launch basis container
+# Launch basis container
 $ docker container run -p 80:80 -it <NAME_IMAGE> /bin/bash
 
-#Or if you are on Windows, you should go to the folder
-#that you want share between the container and the host
+# Or if you are on Windows, you should go to the folder
+# that you want share between the container and the host
 $ docker container run -p 80:80 -it -v "/$(pwd)":/var/www/html <NAME_IMAGE>
 
-#TIPS: You can give a name to your container
+# TIPS: You can give a name to your container
 $ docker container run -p 80:80 --name=enjoy -it <NAME_IMAGE>
 ```
 
@@ -68,8 +75,8 @@ $ docker container run -p 80:80 --name=enjoy -it <NAME_IMAGE>
 Ok, let's go, launch the container for NodeJS Environment
 
 ```bash
-#NodeJS Environment
-#Mount your work folder with argument -v
+# NodeJS Environment
+# Mount your work folder with argument -v
 $ docker container run -p 80:80 -it -v /path/of/host:/var/www/html <NAME_IMAGE>
 ```
 
@@ -78,8 +85,8 @@ $ docker container run -p 80:80 -it -v /path/of/host:/var/www/html <NAME_IMAGE>
 Now, same pain, launch the container for Nginx Environment
 
 ```bash
-#Nginx Environment
-#Mount your work folder with argument -v and open the port of your MySql
+# Nginx Environment
+# Mount your work folder with argument -v and open the port of your MySql
 $ docker container run -p 80:80 -p 3306:3306 -it -v /path/of/host:/var/www/html <NAME_IMAGE>
 ```
 
@@ -112,7 +119,7 @@ $ docker container run -p 80:80 -p 3306:3306 -it -v /path/of/host:/var/www/html 
 
 ### Packages List NodeJS
 
-_Coming soon, MangoDB, i hope !_
+_Coming soon, MongoDB, i hope !_
 
 * Nginx
 * PM2
@@ -127,23 +134,39 @@ _Coming soon, MangoDB, i hope !_
 
 &nbsp;
 
-## Tips _aware_
+## Tips
 
 ### Options `-d` Docker Container
 
 **This argument detach your container**
 
 ```bash
-#Launch container with -d
+# Launch container with -d
 $ docker container run -dit --name=hello nodejs
 ```
 
 If you want rattach your container and enter commands, follow this command
 
 ```bash
-#Attach the terminal on the container who call hello
+# Attach the terminal on the container who call hello
 $ docker container attach hello
 ```
 
 Again in the _Matrix_ and you want to re-detach ?  
 **Tips:** `Ctrl`+`p`+`Ctrl`+`q`
+
+### You are on the Windows Family
+
+If you want install Docker on the Windows Family, you can install the Toolbox for Docker.
+You can install it on the official website [here](https://docs.docker.com/toolbox/toolbox_install_windows/#what-you-get-and-how-it-works)
+
+### You work with Webpack
+
+If you have a problem with your new style generated with Webpack, your style is not reload ?  
+You should verify a value in the `/etc/nginx/nginx.conf`
+
+```bash
+# Normally, the variable is for default `on`
+# You should change the value like below
+sendfile off;
+```
