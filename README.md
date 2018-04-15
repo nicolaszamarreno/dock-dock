@@ -15,10 +15,11 @@ _Just for create and deploy quickly my project and experience on NodeJS & Nginx 
 
 ## Summary
 
-* [Install Image thanks to Dockerfile](#install-image-thanks-to-dockerfile)
-* [Launch the container](#launch-the-container)
-* [Prerequisites & utils](#prerequisites--utils)
-* [Tips](#tips)
+*   [Install Image thanks to Dockerfile](#install-image-thanks-to-dockerfile)
+*   [Launch the container](#launch-the-container)
+*   [XDebug](#xdebug)
+*   [Prerequisites & utils](#prerequisites--utils)
+*   [Tips](#tips)
 
 ## Install Image thanks to `Dockerfile`
 
@@ -90,13 +91,34 @@ Now, same pain, launch the container for Nginx Environment
 $ docker container run -p 80:80 -p 3306:3306 -it -v /path/of/host:/var/www/html <NAME_IMAGE>
 ```
 
+## XDebug
+
+### Configuration in the container
+
+If you want to use XDebug in VSCode, you should add your IP Local in the `xdebug.ini` file.  
+_Go in your terminal and dial `ipconfig`_
+
+```ini
+# /etc/php/7.0/mods-available/xdebug.ini
+xdebug.remote_host={YOUR_IP_HERE}
+```
+
+### Configuration in VSCode
+
+Follow this steps for the installation
+
+*   Download [PHP Debug](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug) package for VS
+*   Launch your debuger `Ctrl+D` in VS
+*   It's easy, copy the content of `launch.json` file in your configuration file
+*   In your browser, add `?XDEBUG_SESSION_START` in the end of your URL
+
 &nbsp;
 
 ## Prerequisites & utils:
 
-* [**Folder structure**](#folder-structure)
-* [**Packages list NodeJS**](#packages-list-nodejs)
-* [**Packages List Nginx**](#packages-list-nginx)
+*   [**Folder structure**](#folder-structure)
+*   [**Packages list NodeJS**](#packages-list-nodejs)
+*   [**Packages List Nginx**](#packages-list-nginx)
 
 ---
 
@@ -121,16 +143,16 @@ $ docker container run -p 80:80 -p 3306:3306 -it -v /path/of/host:/var/www/html 
 
 _Coming soon, MongoDB, i hope !_
 
-* Nginx
-* PM2
-* NodeJS _v.9.3.0_
-* NPM _v.5.5.1_
+*   Nginx
+*   PM2
+*   NodeJS _v.9.3.0_
+*   NPM _v.5.5.1_
 
 ### Packages List Nginx
 
-* Nginx
-* MySql _v.5.5_
-* PHP _v.7.0_
+*   Nginx
+*   MySql _v.5.5_
+*   PHP _v.7.0_
 
 &nbsp;
 

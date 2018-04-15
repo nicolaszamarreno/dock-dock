@@ -19,7 +19,7 @@ RUN apt-get -y install mysql-server
 RUN sed -i ";cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.0/cli/php.ini
 
 COPY default /etc/nginx/sites-available/default
-#COPY www /var/www/html
+COPY xdebug.ini /etc/php/7.0/mods-available/xdebug.ini
 
 EXPOSE 80
 EXPOSE 3306

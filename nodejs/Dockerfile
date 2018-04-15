@@ -12,7 +12,6 @@ RUN apt-get install -y nginx
 RUN npm install pm2 -g
 
 COPY default /etc/nginx/sites-available/default
-#COPY www /var/www/html
 
 EXPOSE 80
 
